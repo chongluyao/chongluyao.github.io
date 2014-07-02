@@ -17,6 +17,9 @@
 			margin: 0px;
 			padding: 0px;
 			width: 800px;
+			height: 1200px;
+			background: white;
+			opacity: 0.4;
 		}
 		div #header
 		{
@@ -28,12 +31,14 @@
 		}
 		div #head
 		{
-			clear:inherit;
+			clear:both;
 			color: white;
 			margin-left: 0px;
-			padding-top: 40px;
+			padding-top: 0px;
 			border: 0px;
-			opacity: 1;
+			font-family:"微软雅黑";
+			font-size:26px;
+			text-align:left;
 		}
 		div #contents
 		{
@@ -45,7 +50,7 @@
 		{
 			float: left;
 			margin: 10px; 
-			height: 40px;
+			height: 30px;
 			width: 180px;
 			background: black;
 			font-family: Verdana, Geneva, sans-serif;
@@ -54,80 +59,117 @@
 		
 		div #body
 		{
-	clear: both;
-	height: 300px;
-	color: black;
-	margin-left: 0px;
-	margin-right: 10px;
-	width: 800px;
-	font-size: 22px;
-	font-family: "华文细黑";
-	text-align: left;
-		}
-		div #writing
-		{
-			background-color: #999;
-			color: white;
-			font-size: 16px;
-			font-family: "华文细黑";
-			text-align: left;
-			margin-left:10px;
-			margin-right: 10px;
+			clear: both;
+			height: 500px;
+			color: black;
+			padding: 10px;
+			margin-left: 0px;
+			margin-right: 0px;
+			width: 800px;
+			font-size: 22px;
+			background:rgba(255,255,255,0.2);
 		}
 		div #foot
 		{
-			color: white;
+			color: black;
+			font-family:"微软雅黑";
+			font-size:10px;
+			width: 800px;
+			background: white;
+			opacity: 0.4;
 		}
 		#nav a 
 		{
-			font-size: 20px;
-			font-family: "造字工房悦圆（非商用）常规体";
+			font-size: 19px;
+			font-family: "微软雅黑";
 			font-style: italic;
 			font-style: normal;
 			text-decoration:none;
 			vertical-align: middle;
 		}
-		#header #nav a 
+		div #homework
 		{
-		font-family: "华文细黑";
+			width: 600px;
 		}
-    	#container #header #head h1 
+		div #straight
 		{
-			font-size: 36px;
+			background: #CCC;
+			width: 600px;
+			height:1px;
+		}
+		div #work
+		{
+			width:600px;
+			clear:both;
+			margin-left:200px;
+			font-size:10px;
+			float:left;
+		}
+		div #date
+		{
+			width: 300px;
+			font-size: 14px;
+			font-family: "微软雅黑";
+			margin-top:5px;
+		}
+		div #article
+		{
+			text-align:left;
+			font-family: "微软雅黑";
+			font-size: 16px;
+		}
+    	#container #body #works a 
+		{
+			font-size: 20px;
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			text-decoration:none;
+			vertical-align: left;
+			color: black;
+			font-family: "微软雅黑";
 		}
     </style>
-<meta charset="gb2312">
+	<meta charset="gb2312">
+	<meta charset="utf-8">
 </head>
 <body alink="#FFFFFF" vlink="#FFFFFF" link="#FFFFFF">
 	<div id="container" align="center">
-	<div id= "header">
-    	<div id= "head">
-        	<h1>Chong Luyao~~(*^__^*) ~~</h1>
-        </div>
-    </div>
-    <div id= "contents" align="center">
-    <div id="nav" align="center">
-        <a href="index1.html">个人信息</a>
-    </div>
-    <div id="nav"align="center">
-        <a href="index2.html">课程展示</a>
-    </div>
-    <div id="nav"align="center">
-        <a href="index3.html">日志随笔</a>
-    </div>
-     <div id="nav"align="center">
-        <a href="index.html">回到主页</a>
-    </div>
-	  <div id="body">
-        	<div id="writing">
-            <p>2014-7-1</p>
-            <p>好郁闷啊~~.......................................................................................</p>
+		<div id= "header">
+    		<div id= "head">
+        		<img src="img/7.jpg" height="140" width="800">
+       		</div>
+    	</div>
+    	<div id= "contents" align="center">
+            <div id="nav" align="center">
+                <a href="index1.html">个人信息</a>
             </div>
-      </div>
-	</div>
-	<div id="foot" align="center">
-    	<!--<p>Copyright 2014 by Charlotte All Rights Reserved.</p>-->
-</div>
+            <div id="nav"align="center">
+                <a href="index2.html">课程展示</a>
+            </div>
+            <div id="nav"align="center">
+                <a href="index3.html">日志随笔</a>
+            </div>
+            <div id="nav"align="center">
+                <a href="index.html">回到主页</a>
+            </div>
+        </div>
+	  	<div id="body">
+            <div id="homework">
+                <div id="divide" align="center">
+                    <div id="straight"></div>
+                </div>
+              <div id= "works">
+                <a href="index4.html" align="center">第一篇日志</a>
+                <div id="date">2014-7-2</div>
+                	<div id="article">
+                	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好不容易放假了，却又迎来了web前端小学期的艰苦历程。尽管如此，终于开始学习网页方面的知识了，还是有着很多好奇与期待的。第一次作业是写一个个人主页，在短短两天的时间里，从对网页一窍不通，到现在写出一个起码自己看着比较顺眼的页面，还是非常有成就感的。之后的JS等内容会越来越难，但是相信用这些更高级的知识会做出更酷炫的效果来。加油！
+                	</p>
+                </div>
+                </div>
+            </div>
+        </div>
+		<div id="foot" align="center">
+    		<p>Copyright 2014 by Charlotte All Rights Reserved.</p>
+		</div>
 </div>
 </body>
 </html>
