@@ -20,7 +20,7 @@ function processData(data)
 		var pic=document.createElement("img");
 		$(pic).attr("src",data.img[i].url);
 		$(tagPic).append(pic);
-		$(tagNews).innerText=data.img[i].news-title;
+		tagNews.innerText=data.img[i].news-title;
 		$(($("ul")[0])).append(tagPic);
 		$(($("ul")[1])).append(tagPic);
 	}
