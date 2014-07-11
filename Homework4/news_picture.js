@@ -109,7 +109,7 @@ function processData(data,num)
 		}
 	}
 }
-function loadXMLDoc3(var num)
+function loadXMLDoc3(num)
 {
 	var xmlhttp;
 	xmlhttp=new XMLHttpRequest();
@@ -213,6 +213,7 @@ function nextpage()
 	if (page < 3)
 	{
 		loadXMLDoc3(page+1);
+		page++;
 	}
 	else alert("已经是最后一页啦！");
 }
@@ -221,6 +222,7 @@ function lastpage()
 	if (page > 1)
 	{
 		loadXMLDoc3(page-1);
+		page--;
 	}
 	else alert("已经是第一页啦！");
 }
