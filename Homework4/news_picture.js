@@ -127,7 +127,7 @@ function loadXMLDoc3()
 			}
 		}
 	}
-	s=Number(storage.pageNum)".json";
+	s=Number(storage.pageNum)+2+".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
 }
