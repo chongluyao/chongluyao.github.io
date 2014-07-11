@@ -4,7 +4,7 @@ var page=1;
 stop=self.setInterval("ShowNextPic()",3000);
 loadXMLDoc1();
 loadXMLDoc2();
-loadXMLDoc3(1);
+loadXMLDoc3();
 function processData1(data)
 {
 	for (var i=0;i<7;i++)
@@ -108,7 +108,7 @@ function processData(data)
 		}
 	}
 }
-function loadXMLDoc3(num)
+function loadXMLDoc3()
 {
 	var xmlhttp;
 	xmlhttp=new XMLHttpRequest();
@@ -126,7 +126,7 @@ function loadXMLDoc3(num)
 			}
 		}
 	}
-	s=num+2+".json";
+	s=page+2+".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
 }
@@ -212,7 +212,7 @@ function nextpage()
 	if (page < 3)
 	{
 		loadXMLDoc3(page+1);
-		page++;
+		page=page+1;
 	}
 	else alert("已经是最后一页啦！");
 }
@@ -221,7 +221,7 @@ function lastpage()
 	if (page > 1)
 	{
 		loadXMLDoc3(page-1);
-		page--;
+		page=page-1;
 	}
 	else alert("已经是第一页啦！");
 }
@@ -237,4 +237,4 @@ $($("#last-pic")[0].children[0]).mouseout(function(){stop=self.setInterval("Show
 $($("ul")[0]).mouseover(function(){stop=window.clearInterval(stop);});
 $($("ul")[0]).mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
 $($("#next-page")[0]).click(nextpage);
-$($("#last-page")[0]).click(nextpage);
+$($("#last-page")[0]).click(lastpage);
