@@ -45,9 +45,7 @@ function loadXMLDoc()
 	}
 	xmlhttp.open("GET","1.json",true);
 	xmlhttp.send();
-	alert(1);
 }
-document.getElementById("pic-box").onclick=loadXMLDoc;
 function ShowPic()
 {
 	stop=window.clearInterval(stop);
@@ -125,6 +123,7 @@ function ShowLastPic()
 		}
 	}
 }
+loadXMLDoc();
 $(".little-button").click(ShowPic);
 $(".little-button").mouseover(ShowPic);
 $(".little-button").mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
