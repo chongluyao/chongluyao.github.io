@@ -5,17 +5,17 @@ function processData(data)
 {
 	for (var i=0;i<6;i++)
 	{
-		var tagPic=$(document.createElement("li"));
-		var tagNews=$(document.createElement("li"));
+		var tagPic=document.createElement("li");
+		var tagNews=document.createElement("li");
 		if (i == 0)
 		{
-			tagPic.css("display","block");
-			tagNews.css("display","block");
+			$(tagPic).css("display","block");
+			$(tagNews).css("display","block");
 		}
 		else 
 		{
-			tagPic.css("display","none");
-			tagNews.css("display","none");
+			$(tagPic).css("display","none");
+			$(tagNews).css("display","none");
 		}
 		var pic=$(document.createElement("img"));
 		pic.attr("src",data.img[i].url);
