@@ -1,7 +1,7 @@
 // JavaScript Document
 var storage = window.localStorage;
-if(storage.picNum == undefined) storage.picNum = 0;
-if (storage.pageNum == undefined) storage.pageNum = 1;
+if(storage.picNum == undefined) storage.picNum = 0/1;
+if (storage.pageNum == undefined) storage.pageNum = 1/1;
 stop=self.setInterval("ShowNextPic()",3000);
 loadXMLDoc1();
 loadXMLDoc2();
