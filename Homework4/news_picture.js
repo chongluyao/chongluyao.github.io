@@ -101,7 +101,10 @@ function processData3(data)
 		$(cont).append(chara);
 		$(comm).append(cont);
 		$(($("#inside")[0])).append(comm);
-		if (i != 3) $(($("#inside")[0])).append(line2);
+		if (i < 3)
+		{
+			$(($("#inside")[0])).append(line2);
+		}
 	}
 }
 function loadXMLDoc3()
