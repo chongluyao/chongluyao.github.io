@@ -75,7 +75,7 @@ function loadXMLDoc2()
 	xmlhttp.open("GET","2.json",true);
 	xmlhttp.send();
 }
-function processData(data,num)
+function processData(data)
 {
 	for (var i=0;i<4;i++)
 	{
@@ -84,16 +84,16 @@ function processData(data,num)
 		var ph=document.createElement("div");
 		$(ph).attr("class","photo");
 		var img=document.createElement("img");
-		$(img).attr("src","data.page"+num+"[i].url");
+		$(img).attr("src",data.page[i].url);
 		$(img).attr("height","100%");
 		var cont=document.createElement("div");
 		$(cont).attr("class","content");
 		var user=document.createElement("div");
 		$(user).attr("class","username");
-		user.innerText="data.page"+num+"[i].username";
+		user.innerText=data.page[i].username;
 		var chara=document.createElement("div");
 		$(chara).attr("class","character");
-		chara.innerText="data.page"+num+"[i].comment";
+		chara.innerText=data.page[i].comment;
 		$(ph).append(img);
 		$(comm).append(ph);
 		$(cont).append(user);
@@ -118,7 +118,7 @@ function loadXMLDoc3(num)
 		{
 			try
 			{
-					processData(JSON.parse(this.responseText),num);
+					processData(JSON.parse(this.responseText));
 			}
 			catch(ex)
 			{
