@@ -34,7 +34,7 @@ function processData1(data)
 		$(button).append(lpic);
 		$(($("ul")[0])).append(tagPic);
 		$(($("ul")[1])).append(tagNews);
-		$($("#pic-slide")[0])).append(button);
+		$($("#pic-slide")[0]).append(button);
 	}
 }
 function loadXMLDoc1()
