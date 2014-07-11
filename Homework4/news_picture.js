@@ -242,8 +242,8 @@ function nextpage()
 {
 	if (page < 3)
 	{
-		gotoPage(page+1);
 		page=page+1;
+		gotoPage();
 	}
 	else alert("已经是最后一页啦！");
 }
@@ -251,8 +251,8 @@ function lastpage()
 {
 	if (page > 1)
 	{
-		gotoPage(page-1);
 		page=page-1;
+		gotoPage();
 	}
 	else alert("已经是第一页啦！");
 }
