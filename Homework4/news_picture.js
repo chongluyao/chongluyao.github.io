@@ -234,9 +234,9 @@ function nextpage()
 }
 function lastpage()
 {
-	if (storage.page > 1)
+	if (storage.pageNum > 1)
 	{
-		storage.page=storage.page-1;
+		storage.pageNum=storage.pageNum-1;
 		gotoPage();
 	}
 	else alert("已经是第一页啦！");
