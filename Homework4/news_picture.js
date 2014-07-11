@@ -13,8 +13,8 @@ function processData1(data)
 		var tagPic=document.createElement("li");
 		var tagNews=document.createElement("li");
 		var button=document.createElement("div");
-		$(button).attr("class","little-button");
 		$(button).attr("id","button"+i);
+		$(button).attr("class","little-button");
 		var lpic=document.createElement("img");
 		if (i == storage.picNum)
 		{
