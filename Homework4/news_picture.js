@@ -100,10 +100,10 @@ function processData3(data)
 		$(cont).append(user);
 		$(cont).append(chara);
 		$(comm).append(cont);
-		$(($("#inside")[0])).append(comm);
+		$(($("#next-page")[0])).before(comm);
 		if (i < 3)
 		{
-			$(($("#inside")[0])).append(line2.clone());
+			$(($("#next-page")[0])).before(line2);
 		}
 	}
 }
