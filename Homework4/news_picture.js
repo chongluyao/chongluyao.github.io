@@ -227,7 +227,7 @@ function nextpage()
 {
 	if (storage.pageNum < 3)
 	{
-		storage.page=Number(storage.pageNum)+1;
+		storage.pageNum=Number(storage.pageNum)+1;
 		gotoPage();
 	}
 	else alert("已经是最后一页啦！");
