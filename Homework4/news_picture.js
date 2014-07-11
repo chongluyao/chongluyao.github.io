@@ -22,7 +22,7 @@ function processData(data)
 		$(tagPic).append(pic);
 		tagNews.innerText=data.img[i].newstitle;
 		$(($("ul")[0])).append(tagPic);
-		$(($("ul")[1])).append(tagPic);
+		$(($("ul")[1])).append(tagNews);
 	}
 }
 function loadXMLDoc()
