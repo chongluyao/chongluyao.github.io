@@ -112,7 +112,7 @@ function loadXMLDoc3()
 		{
 			try
 			{
-					processData1(JSON.parse(this.responseText));
+					processData3(JSON.parse(this.responseText));
 			}
 			catch(ex)
 			{
