@@ -91,8 +91,10 @@ function processData3(data)
 		$(cont).attr("class","content");
 		var user=document.createElement("div");
 		$(user).attr("class","username");
+		user.innerText=data.page1[i].username;
 		var chara=document.createElement("div");
 		$(chara).attr("class","character");
+		chara.innerText=data.page1[i].comment;
 		$(ph).append(img);
 		$(comm).append(ph);
 		$(cont).append(user);
