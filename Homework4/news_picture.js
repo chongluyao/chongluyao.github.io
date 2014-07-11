@@ -1,6 +1,30 @@
 // JavaScript Document
 var picNum=0;
-//var stop=self.setInterval("ShowNextPic()",3000);
+stop=self.setInterval("ShowNextPic()",3000);
+function processData(data)
+{
+	for (var i=0;i<6;i++)
+	{
+		var tagPic=$(document.createElement("li"));
+		var tagNews=$(document.createElement("li"));
+		if (i == 0)
+		{
+			tagPic.css("display","block");
+			tagNews.css("display","block");
+		}
+		else 
+		{
+			tagPic.css("display","none");
+			tagNews.css("display","none");
+		}
+		var pic=$(document.createElement("img"));
+		pic.attr("src",data.img[i].url);
+		tagPic.append(pic);
+		tagNews.innerText=data.img[i].news-title;
+		$(($("ul")[0])).append(tagPic);
+		$(($("ul")[1])).append(tagPic);
+	}
+}
 function loadXMLDoc()
 {
 	var xmlhttp;
@@ -9,7 +33,14 @@ function loadXMLDoc()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
-		document.getElementById("pic-box").innerHTML=xmlhttp.responseText;
+			try
+			{
+				processData(JSON.parse(this.responseText));
+			}
+			catch(ex)
+			{
+				console.log(ex.message);
+			}
 		}
 	}
 	xmlhttp.open("GET","1.json",true);
