@@ -103,7 +103,7 @@ function processData3(data)
 		$(($("#inside")[0])).append(comm);
 		if (i < 3)
 		{
-			$(($("#inside")[0])).append(line2);
+			$(($("#inside")[0])).append(line2.clone());
 		}
 	}
 }
