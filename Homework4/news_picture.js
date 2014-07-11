@@ -1,6 +1,7 @@
 // JavaScript Document
-var picNum=0;
-var page=1;
+var storage = window.localStorage;
+if(storage.picNum == undefined) storage.picNum = 0;
+if (storage.pageNum == undefined) storage.pageNum = 1;
 stop=self.setInterval("ShowNextPic()",3000);
 loadXMLDoc1();
 loadXMLDoc2();
@@ -157,7 +158,7 @@ function gotoPage()
 			}
 		}
 	}
-	s=page+2+".json";
+	s=storage.pageNum+2+".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
 }
@@ -185,19 +186,11 @@ function ShowPic()
 function ShowNextPic()
 {
 	box = $("[id='pic-box']>ul")[0].children;
+	if (storage.picNum != 6) storage.picNum=storage.picNum+1;
+	else storage.picNum=0;
 	for (var i=0;i < box.length;i++)
 	{
-		if ($($("ul")[0].children[i]).css("display")=="block")
-		{
-			pic=i;
-			break;
-		}
-	}
-	if (pic != 6) pic=pic+1;
-	else pic=0;
-	for (var i=0;i < box.length;i++)
-	{
-		if (i == pic)
+		if (i == storage.picNum)
 		{
 			$($("ul")[0].children[i]).css("display","block");
 			$($("ul")[1].children[i]).css("display","block");
@@ -214,19 +207,11 @@ function ShowNextPic()
 function ShowLastPic()
 {
 	box = $("[id='pic-box']>ul")[0].children;
+	if (storage.picNum != 0) storage.picNum=storage.picNum-1;
+	else storage.picNum=6;
 	for (var i=0;i < box.length;i++)
 	{
-		if ($($("ul")[0].children[i]).css("display")=="block")
-		{
-			pic=i;
-			break;
-		}
-	}
-	if (pic != 0) pic=pic-1;
-	else pic=6;
-	for (var i=0;i < box.length;i++)
-	{
-		if (i == pic)
+		if (i == storage.picNum)
 		{
 			$($("ul")[0].children[i]).css("display","block");
 			$($(".little-button")[i].children[0]).attr("src","img/2.png");
@@ -240,18 +225,18 @@ function ShowLastPic()
 }
 function nextpage()
 {
-	if (page < 3)
+	if (storage.pageNum < 3)
 	{
-		page=page+1;
+		storage.page=storage.pageNum+1;
 		gotoPage();
 	}
 	else alert("已经是最后一页啦！");
 }
 function lastpage()
 {
-	if (page > 1)
+	if (storage.page > 1)
 	{
-		page=page-1;
+		storage.page=storage.page-1;
 		gotoPage();
 	}
 	else alert("已经是第一页啦！");
