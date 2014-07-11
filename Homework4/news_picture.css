@@ -85,7 +85,7 @@
 		overflow:hidden;
 		opacity:0.2
 	}
-	div.big-button:hover
+	div.big-button: hover
 	{
 		width:60px;
 		height:60px;
