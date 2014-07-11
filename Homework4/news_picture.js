@@ -17,10 +17,10 @@ function processData(data)
 			$(tagPic).css("display","none");
 			$(tagNews).css("display","none");
 		}
-		var pic=$(document.createElement("img"));
-		pic.attr("src",data.img[i].url);
-		tagPic.append(pic);
-		tagNews.innerText=data.img[i].news-title;
+		var pic=document.createElement("img");
+		$(pic).attr("src",data.img[i].url);
+		$(tagPic).append(pic);
+		$(tagNews).innerText=data.img[i].news-title;
 		$(($("ul")[0])).append(tagPic);
 		$(($("ul")[1])).append(tagPic);
 	}
