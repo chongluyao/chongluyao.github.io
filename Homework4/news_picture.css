@@ -83,6 +83,12 @@
 		margin-right:20px;
 		margin-left:20px;
 		overflow:hidden;
+		opacity:0.3;
+	}
+	div.big-button:hover
+	{
+		opacity:1;
+		transition:opacity 2s;
 	}
 	div #pic-slide
 	{
