@@ -1,7 +1,7 @@
 // JavaScript Document
 var storage = window.localStorage;
-if(storage.picNum == undefined) storage.picNum = Number(0);
-if (storage.pageNum == undefined) storage.pageNum = Number(1);
+if (storage.picNum) == undefined) storage.picNum = Number(0);
+if (storage.pageNum) == undefined) storage.pageNum = Number(1);
 stop=self.setInterval("ShowNextPic()",3000);
 loadXMLDoc1();
 loadXMLDoc2();
@@ -12,7 +12,7 @@ function processData1(data)
 	{
 		var tagPic=document.createElement("li");
 		var tagNews=document.createElement("li");
-		if (i == 0)
+		if (i == storage.picNum)
 		{
 			$(tagPic).css("display","block");
 			$(tagNews).css("display","block");
@@ -127,7 +127,7 @@ function loadXMLDoc3()
 			}
 		}
 	}
-	s="3.json";
+	s=Number(storage.pageNum)".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
 }
