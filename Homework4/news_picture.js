@@ -126,6 +126,37 @@ function loadXMLDoc3()
 			}
 		}
 	}
+	s="3.json";
+	xmlhttp.open("GET",s,true);
+	xmlhttp.send();
+}
+function processData3(data)
+{
+	for (var i=0;i<4;i++)
+	{
+		$($(".photo")[i].chilren[0]).attr("src",data.page[i].url);
+		$($("username")[i]).innerText=data.page[i].username;
+		$($("charater")[i]).innerText=data.page[i].comment;
+	}
+}
+function gotoPage()
+{
+	var xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			try
+			{
+					processData3(JSON.parse(this.responseText));
+			}
+			catch(ex)
+			{
+				console.log(ex.message);
+			}
+		}
+	}
 	s=page+2+".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
@@ -211,7 +242,7 @@ function nextpage()
 {
 	if (page < 3)
 	{
-		loadXMLDoc3(page+1);
+		gotoPage(page+1);
 		page=page+1;
 	}
 	else alert("已经是最后一页啦！");
@@ -220,7 +251,7 @@ function lastpage()
 {
 	if (page > 1)
 	{
-		loadXMLDoc3(page-1);
+		gotoPage(page-1);
 		page=page-1;
 	}
 	else alert("已经是第一页啦！");
