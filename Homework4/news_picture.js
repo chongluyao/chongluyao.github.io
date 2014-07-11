@@ -184,6 +184,7 @@ function ShowPic()
 			$($(".little-button")[i].children[0]).attr("src","img/6.png");
 		}
 	}
+	pic = storage.picNum;
 }
 function ShowNextPic()
 {
