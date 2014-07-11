@@ -39,6 +39,7 @@ function processData1(data)
 	}
 	$(".little-button").click(ShowPic);
 	$(".little-button").mouseover(ShowPic);
+	$(".little-button").mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
 }
 function loadXMLDoc1()
 {
@@ -252,7 +253,6 @@ function lastpage()
 	}
 	else alert("已经是第一页啦！");
 }
-$(".little-button").mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
 $($("#next-pic")[0].children[0]).click(ShowNextPic);
 $($("#next-pic")[0].children[0]).mouseover(function(){stop=window.clearInterval(stop);});
 $($("#next-pic")[0].children[0]).mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
