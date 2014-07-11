@@ -43,7 +43,7 @@ function loadXMLDoc()
 			}
 		}
 	}
-	xmlhttp.open("GET","https://github.com/cocolotte/cocolotte.github.io/blob/master/Homework4/1.json",true);
+	xmlhttp.open("GET","http://github.com/cocolotte/cocolotte.github.io/blob/master/Homework4/1.json",true);
 	xmlhttp.send();
 }
 function ShowPic()
