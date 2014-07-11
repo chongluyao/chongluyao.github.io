@@ -1,0 +1,198 @@
+@charset "utf-8";
+/* CSS Document */
+	body
+	{
+		background:#CCC;
+		margin:0px;
+	}
+	div #headline
+	{
+		width:1150px;
+		height:60px;
+		font-family:"华文细黑";
+		font-size:40px;
+		padding-top:20px;
+		padding-bottom:10px;
+		color:#FF9;
+	}
+	div #picture
+	{
+		width:1124px;
+		height:autopx;
+	}
+	div #pic-big
+	{
+		width:1124px;
+		height:554px;
+	}
+	div #pic-box
+	{
+		width:900px;
+		height:540px;
+		background:#FFF;
+		margin:10px;
+		border:2px solid white;
+		overflow:hidden;
+		/*box-shadow: 20px 20px 50px #666666;*/
+		float:left;
+		margin-bottom:0px;
+	}
+	#news
+	{
+		width:904px;
+		height:40px;
+		font-size:20px;
+		font-family:"华文细黑";
+		text-align:left;
+		background:white;
+		/*opacity:0.5;*/
+		box-shadow: 20px 20px 50px #666666;
+	}
+	ul
+	{
+		padding:0px;
+		margin:0px;
+		list-style:none;
+		overflow:hidden;
+	}
+	div #pic-box li
+	{
+		margin:0px;
+		padding:0px;
+		list-style:none;
+		width:904px;
+		height:540px;
+	}
+	div #news li
+	{
+		margin:0px;
+		padding:0px;
+		list-style:none;
+		width:900px;
+		height:40px;
+		padding-top:5px;
+		margin-left:2px;
+		margin-right:2px;
+	}
+	div.big-button
+	{
+		width:60px;
+		height:60px;
+		float:left;
+		margin-top:280px;
+		margin-right:20px;
+		margin-left:20px;
+		overflow:hidden;
+	}
+	div #pic-slide
+	{
+		height:55px;
+		width:210px;
+	}
+	div.little-button
+	{
+		width:15px;
+		height:15px;
+		float:left;
+		margin-top:30px;
+		margin-right:7.5px;
+		margin-left:7.5px;
+		margin-bottom:20px;
+		overflow:hidden;
+	}
+	div #picture img
+	{
+		width:100%;
+	}
+	div #discuss
+	{
+		width:904px;
+		height:600px;
+		background:#FFF;
+		margin-bottom:10px;
+		font-family:"华文细黑";
+	}
+	div #inside
+	{
+		width:800px;
+	}
+	div #header
+	{
+		width:800px;
+		height:65px;
+		color:black;
+		valign:bottom;
+		font-size:20px;
+		text-align:left;
+	}
+	.line1
+	{
+		width:800px;
+		height:2px;
+		background:#666;
+	}
+	.comments
+	{
+		width:800px;
+		height:120px;
+		text-align:left;
+	}
+	.photo
+	{
+		width:80px;
+		height:80px;
+		float:left;
+		overflow:hidden;
+		margin:10px;
+		
+	}
+	.content
+	{
+		
+		width:680px;
+		height:100px;
+		float:left;
+		overflow:hidden;
+		margin:10px;
+	}
+	.username
+	{
+		width:680px;
+		height:20px;
+		float:left;
+		margin-top:5px;
+		margin-bottom:5px;
+		overflow:hidden;
+		color:#83D8DC;
+		font-size:16px;
+	}
+	.character
+	{
+		width:680px;
+		height:80px;
+		margin-top:5px;
+		margin-bottom:5px;
+		font-size:14px;
+		color:black;
+		float:left;
+	}
+	.line2
+	{
+		width:800px;
+		height:1px;
+		background:#999;
+	}
+	div #last-page
+	{
+		float:right;
+		color:#83D8DC;
+		font-size:14px;
+		margin:5px;
+	}
+	div #next-page
+	{
+		float:right;
+		color:#83D8DC;
+		font-size:14px;
+		margin:5px;
+	}
