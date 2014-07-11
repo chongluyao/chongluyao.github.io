@@ -77,7 +77,6 @@ function loadXMLDoc2()
 }
 function processData(data,num)
 {
-	num=num-2;
 	for (var i=0;i<4;i++)
 	{
 		var comm=document.createElement("div");
@@ -127,7 +126,7 @@ function loadXMLDoc3(num)
 			}
 		}
 	}
-	s=num+".json";
+	s=num+2+".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
 }
