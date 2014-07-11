@@ -1,7 +1,9 @@
 // JavaScript Document
 var picNum=0;
 stop=self.setInterval("ShowNextPic()",3000);
-loadXMLDoc();
+loadXMLDoc1();
+loadXMLDoc2();
+loadXMLDoc3();
 function processData1(data)
 {
 	for (var i=0;i<7;i++)
@@ -45,6 +47,80 @@ function loadXMLDoc1()
 		}
 	}
 	xmlhttp.open("GET","1.json",true);
+	xmlhttp.send();
+}
+function processData2(data)
+{
+	num=data.num/4;
+}
+function loadXMLDoc2()
+{
+	var xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			try
+			{
+					processData2(JSON.parse(this.responseText));
+			}
+			catch(ex)
+			{
+				console.log(ex.message);
+			}
+		}
+	}
+	xmlhttp.open("GET","2.json",true);
+	xmlhttp.send();
+}
+function processData3(data)
+{
+	var line2=document.createElement("div");
+	$(line2).attr("class","line2");
+	for (var i=0;i<4;i++)
+	{
+		var comm=document.createElement("div");
+		$(comm).attr("class","comments");
+		var ph=document.createElement("div");
+		$(ph).attr("class","photo");
+		var img=document.createElement("img");
+		$(img).attr("src",data.page1[i].url);
+		$(img).attr("height","100%");
+		var cont=document.createElement("div");
+		$(cont).attr("class","content");
+		var user=document.createElement("div");
+		$(user).attr("class","username");
+		var chara=document.createElement("div");
+		$(chara).attr("class","character");
+		$(ph).append(img);
+		$(comm).append(ph);
+		$(cont).append(user);
+		$(cont).append(chara);
+		$(comm).append(cont);
+		$(($("#inside")[0])).append(comm);
+		if (i != 3) $(($("#inside")[0])).append(line2);
+	}
+}
+function loadXMLDoc3()
+{
+	var xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			try
+			{
+					processData1(JSON.parse(this.responseText));
+			}
+			catch(ex)
+			{
+				console.log(ex.message);
+			}
+		}
+	}
+	xmlhttp.open("GET","3.json",true);
 	xmlhttp.send();
 }
 function ShowPic()
