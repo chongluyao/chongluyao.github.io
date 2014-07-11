@@ -76,8 +76,6 @@ function loadXMLDoc2()
 }
 function processData3(data)
 {
-	var line2=document.createElement("div");
-	$(line2).attr("class","line2");
 	for (var i=0;i<4;i++)
 	{
 		var comm=document.createElement("div");
@@ -103,6 +101,8 @@ function processData3(data)
 		$(($("#next-page")[0])).before(comm);
 		if (i < 3)
 		{
+			var line2=document.createElement("div");
+			$(line2).attr("class","line2");
 			$(($("#next-page")[0])).before(line2);
 		}
 	}
