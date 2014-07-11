@@ -135,8 +135,8 @@ function processData3(data)
 	for (var i=0;i<4;i++)
 	{
 		$($(".photo")[i].children[0]).attr("src",data.page[i].url);
-		$($(".username")[i]).innerText=data.page[i].username;
-		$($(".charater")[i]).innerText=data.page[i].comment;
+		$(".username")[i].innerText=data.page[i].username;
+		$(".charater")[i].innerText=data.page[i].comment;
 	}
 }
 function gotoPage()
