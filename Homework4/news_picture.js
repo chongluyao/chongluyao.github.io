@@ -3,7 +3,7 @@ var picNum=0;
 stop=self.setInterval("ShowNextPic()",3000);
 function processData(data)
 {
-	for (var i=0;i<6;i++)
+	for (var i=0;i<7;i++)
 	{
 		var tagPic=document.createElement("li");
 		var tagNews=document.createElement("li");
