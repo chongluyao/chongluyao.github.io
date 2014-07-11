@@ -37,6 +37,8 @@ function processData1(data)
 		$(($("ul")[1])).append(tagNews);
 		$($("#pic-slide")[0]).append(button);
 	}
+	$(".little-button").click(ShowPic);
+	$(".little-button").mouseover(ShowPic);
 }
 function loadXMLDoc1()
 {
@@ -250,8 +252,6 @@ function lastpage()
 	}
 	else alert("已经是第一页啦！");
 }
-$(".little-button").click(ShowPic);
-$(".little-button").mouseover(ShowPic);
 $(".little-button").mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
 $($("#next-pic")[0].children[0]).click(ShowNextPic);
 $($("#next-pic")[0].children[0]).mouseover(function(){stop=window.clearInterval(stop);});
