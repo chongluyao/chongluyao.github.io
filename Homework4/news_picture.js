@@ -1,7 +1,8 @@
 // JavaScript Document
 var picNum=0;
 stop=self.setInterval("ShowNextPic()",3000);
-function processData(data)
+loadXMLDoc();
+function processData1(data)
 {
 	for (var i=0;i<7;i++)
 	{
@@ -12,7 +13,7 @@ function processData(data)
 			$(tagPic).css("display","block");
 			$(tagNews).css("display","block");
 		}
-		else 
+		else
 		{
 			$(tagPic).css("display","none");
 			$(tagNews).css("display","none");
@@ -25,17 +26,17 @@ function processData(data)
 		$(($("ul")[1])).append(tagNews);
 	}
 }
-function loadXMLDoc()
+function loadXMLDoc1()
 {
 	var xmlhttp;
-	xmlhttp=new XMLHttpRequest(); 
+	xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 		if (xmlhttp.readyState==4 && xmlhttp.status==200)
 		{
 			try
 			{
-				processData(JSON.parse(this.responseText));
+					processData1(JSON.parse(this.responseText));
 			}
 			catch(ex)
 			{
@@ -59,7 +60,7 @@ function ShowPic()
 			$($("ul")[1].children[i]).css("display","block");
 			$($(".little-button")[i].children[0]).attr("src","img/2.png");
 		}
-		else 
+		else
 		{
 			$($("ul")[0].children[i]).css("display","none");
 			$($("ul")[1].children[i]).css("display","none");
@@ -88,7 +89,7 @@ function ShowNextPic()
 			$($("ul")[1].children[i]).css("display","block");
 			$($(".little-button")[i].children[0]).attr("src","img/2.png");
 		}
-		else 
+		else
 		{
 			$($("ul")[0].children[i]).css("display","none");
 			$($("ul")[1].children[i]).css("display","none");
@@ -116,14 +117,13 @@ function ShowLastPic()
 			$($("ul")[0].children[i]).css("display","block");
 			$($(".little-button")[i].children[0]).attr("src","img/2.png");
 		}
-		else 
+		else
 		{
 			$($("ul")[0].children[i]).css("display","none");
 			$($(".little-button")[i].children[0]).attr("src","img/6.png");
 		}
 	}
 }
-loadXMLDoc();
 $(".little-button").click(ShowPic);
 $(".little-button").mouseover(ShowPic);
 $(".little-button").mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
