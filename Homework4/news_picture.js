@@ -226,11 +226,13 @@ function ShowLastPic()
 		if (i == storage.picNum)
 		{
 			$($("ul")[0].children[i]).css("display","block");
+			$($("ul")[1].children[i]).css("display","block");
 			$($(".little-button")[i].children[0]).attr("src","img/2.png");
 		}
 		else
 		{
 			$($("ul")[0].children[i]).css("display","none");
+			$($("ul")[1].children[i]).css("display","none");
 			$($(".little-button")[i].children[0]).attr("src","img/6.png");
 		}
 	}
