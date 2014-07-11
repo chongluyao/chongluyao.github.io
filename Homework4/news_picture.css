@@ -83,19 +83,11 @@
 		margin-right:20px;
 		margin-left:20px;
 		overflow:hidden;
-		opacity:0.2
+		opacity:0.2;
 	}
-	div.big-button: hover
+	div.big-button
 	{
-		width:60px;
-		height:60px;
-		float:left;
-		margin-top:280px;
-		margin-right:20px;
-		margin-left:20px;
-		overflow:hidden;
 		opacity:1;
-		-webkit-transition:opacity 2s;
 	}
 	div #pic-slide
 	{
