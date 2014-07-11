@@ -12,24 +12,29 @@ function processData1(data)
 	{
 		var tagPic=document.createElement("li");
 		var tagNews=document.createElement("li");
+		var button=document.createElement("div");
+		$(button).attr("class","little-button");
+		var lpic=document.createElement("img");
 		if (i == storage.picNum)
 		{
 			$(tagPic).css("display","block");
 			$(tagNews).css("display","block");
-			$($(".little-button")[i].children[0]).attr("src","img/2.png");
+			$(lpic).attr("src","img/2.png");
 		}
 		else
 		{
 			$(tagPic).css("display","none");
 			$(tagNews).css("display","none");
-			$($(".little-button")[i].children[0]).attr("src","img/6.png");
+			$(lpic).attr("src","img/6.png");
 		}
 		var pic=document.createElement("img");
 		$(pic).attr("src",data.img[i].url);
 		$(tagPic).append(pic);
 		tagNews.innerText=data.img[i].newstitle;
+		$(button).append(lpic);
 		$(($("ul")[0])).append(tagPic);
 		$(($("ul")[1])).append(tagNews);
+		$($("#pic-slide")[0])).append(button);
 	}
 }
 function loadXMLDoc1()
