@@ -1,7 +1,7 @@
 // JavaScript Document
 var storage = window.localStorage;
-if(storage.picNum == undefined) storage.picNum = 0/1;
-if (storage.pageNum == undefined) storage.pageNum = 1/1;
+if(storage.picNum == undefined) storage.picNum = Number(0);
+if (storage.pageNum == undefined) storage.pageNum = Number(1);
 stop=self.setInterval("ShowNextPic()",3000);
 loadXMLDoc1();
 loadXMLDoc2();
@@ -158,7 +158,7 @@ function gotoPage()
 			}
 		}
 	}
-	s=storage.pageNum+2+".json";
+	s=Number(storage.pageNum)+2+".json";
 	xmlhttp.open("GET",s,true);
 	xmlhttp.send();
 }
@@ -186,7 +186,7 @@ function ShowPic()
 function ShowNextPic()
 {
 	box = $("[id='pic-box']>ul")[0].children;
-	if (storage.picNum != 6) storage.picNum=storage.picNum+1;
+	if (storage.picNum != 6) storage.picNum=Number(storage.picNum)+1;
 	else storage.picNum=0;
 	for (var i=0;i < box.length;i++)
 	{
@@ -207,7 +207,7 @@ function ShowNextPic()
 function ShowLastPic()
 {
 	box = $("[id='pic-box']>ul")[0].children;
-	if (storage.picNum != 0) storage.picNum=storage.picNum-1;
+	if (storage.picNum != 0) storage.picNum=Number(storage.picNum)-1;
 	else storage.picNum=6;
 	for (var i=0;i < box.length;i++)
 	{
@@ -227,7 +227,7 @@ function nextpage()
 {
 	if (storage.pageNum < 3)
 	{
-		storage.page=storage.pageNum+1;
+		storage.page=Number(storage.pageNum)+1;
 		gotoPage();
 	}
 	else alert("已经是最后一页啦！");
@@ -236,7 +236,7 @@ function lastpage()
 {
 	if (storage.pageNum > 1)
 	{
-		storage.pageNum=storage.pageNum-1;
+		storage.pageNum=Number(storage.pageNum)-1;
 		gotoPage();
 	}
 	else alert("已经是第一页啦！");
