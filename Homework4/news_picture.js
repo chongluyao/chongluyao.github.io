@@ -16,11 +16,13 @@ function processData1(data)
 		{
 			$(tagPic).css("display","block");
 			$(tagNews).css("display","block");
+			$($(".little-button")[i].children[0]).attr("img","img/2.png");
 		}
 		else
 		{
 			$(tagPic).css("display","none");
 			$(tagNews).css("display","none");
+			$($(".little-button")[i].children[0]).attr("img","img/6.png");
 		}
 		var pic=document.createElement("img");
 		$(pic).attr("src",data.img[i].url);
