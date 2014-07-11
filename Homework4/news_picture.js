@@ -14,6 +14,7 @@ function processData1(data)
 		var tagNews=document.createElement("li");
 		var button=document.createElement("div");
 		$(button).attr("class","little-button");
+		$(button).attr("id","button"+i);
 		var lpic=document.createElement("img");
 		if (i == storage.picNum)
 		{
@@ -172,7 +173,7 @@ function gotoPage()
 function ShowPic()
 {
 	stop=window.clearInterval(stop);
-	pic = $(this).attr("id")[6]-1;
+	pic = $(this).attr("id")[6];
 	box = $("[id='pic-box']>ul")[0].children;
 	for (var i=0;i < box.length;i++)
 	{
