@@ -17,7 +17,7 @@ function loadXMLDoc()
 	alert(1);
 }
 document.getElementById("pic-box").onclick=loadXMLDoc;
-/*function ShowPic()
+function ShowPic()
 {
 	stop=window.clearInterval(stop);
 	pic = $(this).attr("id")[6]-1;
@@ -104,4 +104,4 @@ $($("#last-pic")[0].children[0]).click(ShowLastPic);
 $($("#last-pic")[0].children[0]).mouseover(function(){stop=window.clearInterval(stop);});
 $($("#last-pic")[0].children[0]).mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
 $($("ul")[0]).mouseover(function(){stop=window.clearInterval(stop);});
-$($("ul")[0]).mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});*/
+$($("ul")[0]).mouseout(function(){stop=self.setInterval("ShowNextPic()",3000)});
