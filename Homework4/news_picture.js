@@ -136,7 +136,7 @@ function processData3(data)
 	{
 		$($(".photo")[i].children[0]).attr("src",data.page[i].url);
 		$(".username")[i].innerText=data.page[i].username;
-		$(".charater")[i].innerText=data.page[i].comment;
+		$(".character")[i].innerText=data.page[i].comment;
 	}
 }
 function gotoPage()
