@@ -1,352 +1,4 @@
 ﻿// JavaScript Document
-var u_canvas, u_ctx;  //全局变量以u开头
-var u_width, u_height;
-
-var u_myBang;
-var u_myBall;
-var u_myControl;
-var u_myBangUp;
-var u_myAnimal = new Animal();
-
-var u_imageBricks = new Array();
-var u_imageBang = new Image();  
-var u_imageBall = new Image();  
-var u_imageBricks = new Array();
-
-
-var u_gameStart = 0;  //游戏时间种子
-var u_gameTimer;//计时时间种子
-var u_timeCounter = 0;
-var u_min = u_sec = 0; 
-
-var u_pause = false;// 
-
-var u_ballR = 10;
-var u_bangW = 150;
-var u_bangH = 20;
-var u_ballToBang = w_produceRandom(0,u_bangW);
-var u_bricksR = 10;
-var u_bricksC = 10;
-var u_bricksP = 1;
-var u_bangSpeedX = 5;
-var u_ballSpeedX = 0.5;
-var u_ballSpeedY = -5;
-var u_winOrLose = false;
-var u_map;
-var u_sounds;
-var u_soundOn = true;
-
-var s_imageBang_1 = new Image();
-var s_imageBall_1 = new Image();
-var s_imageBang_0 = new Image();
-var s_imageBall_0 = new Image();
-
-s_imageBang_1.src = 'image/padd.png';
-s_imageBall_1.src = "image/ball.jpg";
-s_imageBang_0.src = 'image/padd.png';
-s_imageBall_0.src = "image/ball.jpg";
-
-var s_imageBricks_1 = new Array;
-s_imageBricks_1[0] = new Image();
-s_imageBricks_1[0].src = "image/wall.gif";
-s_imageBricks_1[1] = new Image();
-s_imageBricks_1[1].src = "image/steel.gif";
-s_imageBricks_1[2] = new Image();
-s_imageBricks_1[2].src = "image/sea.gif";
-s_imageBricks_1[3] = new Image();
-s_imageBricks_1[3].src = "image/itank.gif";
-s_imageBricks_1[4] = new Image();
-s_imageBricks_1[4].src = "image/2.png";
-s_imageBricks_1[5] = new Image();
-s_imageBricks_1[5].src = "image/win.jpg";
-
-var s_imageBackground_1 = new Array();
-for(var i = 0; i < 30; i++)
-{
-var j = i+1;
-s_imageBackground_1[i] = new Image();
-s_imageBackground_1[i].src = "image/background/background_"+j+".JPG";
-}
-
-var s_imageBackground_0 = new Array();
-for(var i = 0; i < 30; i++)
-{
-var j = i+1;
-s_imageBackground_0[i] = new Image();
-s_imageBackground_0[i].src = "image/background/background_"+j+".JPG";
-}
-
-var s_imageBricks_0 = new Array;
-s_imageBricks_0[0] = new Image();
-s_imageBricks_0[0].src = "image/wall.gif";
-s_imageBricks_0[1] = new Image();
-s_imageBricks_0[1].src = "image/steel.gif";
-s_imageBricks_0[2] = new Image();
-s_imageBricks_0[2].src = "image/sea.gif";
-s_imageBricks_0[3] = new Image();
-s_imageBricks_0[3].src = "image/itank.gif";
-s_imageBricks_0[4] = new Image();
-s_imageBricks_0[4].src = "image/podium.gif";
-s_imageBricks_0[5] = new Image();
-s_imageBricks_0[5].src = "image/win.jpg";
-
-
-var s_sounds_1= new Array();
-s_sounds_1[0] = new Audio('audio/clush.mp3');
-s_sounds_1[0].volume = 0.6;
-s_sounds_1[1] = new Audio('audio/colla.mp3');
-s_sounds_1[1].volume = 0.6;
-s_sounds_1[2] = new Audio('audio/win.mp3');
-s_sounds_1[2].volume = 0.6;
-s_sounds_1[3] = new Audio('audio/lose.mp3');
-s_sounds_1[3].volume = 0.6;
-
-
-var s_sounds_0= new Array();
-
-s_sounds_0[0] = new Audio('audio/clush.mp3');
-s_sounds_0[0].volume = 0.6;
-s_sounds_0[1] = new Audio('audio/colla.mp3');
-s_sounds_0[1].volume = 0.6;
-s_sounds_0[2] = new Audio('audio/win.mp3');
-s_sounds_0[2].volume = 0.6;
-s_sounds_0[3] = new Audio('audio/lose.mp3');
-s_sounds_0[3].volume = 0.6;
-
-var s_map_0 = new Array();
-
-/*s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,5],
-				[1,1,1,2,1,1,1,1,1,1],
-				[1,1,1,1,1,1,1,1,1,1],
-				[1,1,1,2,1,1,1,1,1,1],
-				[1,1,1,1,1,1,2,1,1,1],
-				[1,1,1,2,1,1,1,1,1,1],
-				[1,1,1,1,1,1,1,1,1,1],
-				[1,1,1,1,7,7,1,1,1,1],
-				[4,1,1,7,7,7,7,1,1,1],
-				[1,1,7,7,7,7,7,7,1,1]];*/
-				
-s_map_0[0]   =  [[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,3,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,2,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_0[1] =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,1,1,1,1,2,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,2,1,3,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_0[2]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,2,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_0[3]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_0[4] =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_0[5]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_0[6]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_0[7]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_0[8]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_0[9]  =	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-var s_map_1= new Array();
-
-s_map_1[0] =   [[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,5,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_1[1] =    [[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,1,1,1,1,1,1,1,7],
-				[7,7,1,1,1,1,1,1,1,7],
-				[7,7,1,1,1,1,1,1,1,7],
-				[7,7,1,1,1,1,1,1,1,7],
-				[7,7,1,1,1,1,1,1,1,7],
-				[7,1,1,1,3,7,1,1,1,7],
-				[7,2,1,2,7,2,7,1,2,7],
-				[7,1,7,1,7,1,7,1,7,1]];
-				
-s_map_1[2] =   [[7,7,7,7,7,7,7,7,7,7],
-				[7,2,1,2,1,2,1,2,2,7],
-				[7,2,7,7,7,7,7,7,2,7],
-				[7,2,2,1,1,1,1,1,2,7],
-				[7,2,1,1,1,1,1,1,2,7],
-				[7,2,1,1,1,3,3,1,2,7],
-				[7,2,1,1,1,1,1,2,2,7],
-				[7,2,2,2,3,3,2,2,2,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_1[3] =   [[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_1[4] = 	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_1[5] = 	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_1[6] = 	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-				
-s_map_1[7] = 	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];
-
-s_map_1[8] = 	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];	
-
-s_map_1[9] = 	[[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,1,7,7],
-				[7,7,1,1,1,1,1,1,7,7],
-				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,1,1,1,1,1,2,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,7,7,7,7,7,7,7,7]];	
 //////////////////////////定义对象//////////////////////////////////////
 
 //小球对象
@@ -373,7 +25,6 @@ function Ball(x, y, r, dx, dy, image, auto) {      //球，这里把小球当做
 		if(u_winOrLose == true)
 			w_gameOver();
 	};
-	
 	this.step=function(bang, height, width, control,bricks,animal){   //小球一步的运动
 		var that = this;
 
@@ -411,19 +62,13 @@ function Ball(x, y, r, dx, dy, image, auto) {      //球，这里把小球当做
 			
 			//画布边界检测
 			
-			if(that.y + that.r + that.dy > height)//输球
+			if(that.y + that.r + that.dy > height || that.y - that.r + that.dy < 0)//输球
 			{
 				u_winOrLose = false;
 				w_gameOver();
 				return;
 			}
-			if(that.y - that.r+that.dy <= 0)
-			{
-				this.dy = -this.dy;
-				this.x = this.x + this.dx;
-				this.y = this.y + this.dy;
-				return;
-			}
+		
 			if(that.x - that.r+that.dx <= 0 || that.x + that.r + that.dx >= width)
 			{
 				this.dx = -this.dx; //绕x轴翻转
@@ -596,7 +241,7 @@ function Bang(x, y, w, h, dx, dy, image, stick){
 		
 	};
 	
-	this.step=function(height,width,control){//棒子一步的运动
+	this.step=function(height,width,control,bricks){//棒子一步的运动
 		var that = this;
 		if(control.left == true && control.right == false)
 		{
@@ -737,6 +382,7 @@ function Bricks(w, h, r, c, p, image,map){
 	this.draw = function(ctx){
 		var that = this;
 		var b = this.brick;
+		var flag = true;
 		for(var i = 0; i < this.r;i++)
 		for(var j= 0; j<this.c;j++)
         	if (this.bricks[i][j].state != 0 && this.bricks[i][j].state != 7) {
@@ -749,8 +395,12 @@ function Bricks(w, h, r, c, p, image,map){
                 	ctx.fill();*/
 					if(this.bricks[i][j].state == 6)
 					u_winOrLose = true;
+					if(this.bricks[i][j].state == 1)
+					flag = false;
 					ctx.drawImage(that.image[that.bricks[i][j].state-1],(j * (b.w + 2*b.p)) + b.p, (i * (b.h + 2*b.p)) + b.p, b.w, b.h);
     			}
+		if(flag == true && u_mode == 0)
+		u_winOrLose = true;
 				
 	}
 	
@@ -822,9 +472,12 @@ function w_restart(){
 							
 	u_myBangUp = new Bang(u_width/2, 0, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
 	
-	u_myBall= new Ball(u_width/2+ u_ballToBang, u_height-u_bangH-u_ballR-1, u_ballR, u_ballSpeedX, u_ballSpeedY, u_imageBall, false);
+	if(u_ballUpOrDown == true)
+	u_myBall= new Ball(u_width/2+ u_ballToBang, u_height-u_bangH-u_ballR-1, u_ballR, u_ballSpeedX, -u_ballSpeedY, u_imageBall, false);
+	else
+	u_myBall = new Ball(u_width/2 + u_ballToBang,u_bangH+u_ballR+1,u_ballR, u_ballSpeedX, u_ballSpeedY, u_imageBall, false);
 			      
-					u_gameStart=window.setInterval(w_gameStep,10);
+					u_gameStart=window.setInterval(w_gameStep,u_speedTime);
 					u_gameTimer=window.setInterval(w_timeCount,1000);
 			    }, 1000)
 			}
@@ -835,6 +488,8 @@ function w_gameOver(){
 	{
 		u_winOrLose = false;
 		u_sounds[2].play();
+			clearInterval(u_gameStart);
+			clearInterval(u_gameTimer);
 			$(function(){
 			setTimeout(function(){
 			  $($('li')[1]).css('display','none');
@@ -848,15 +503,15 @@ function w_gameOver(){
 			u_balls --;
 			if (u_balls >= 0)
 			{
-				$("#ballsleft")[0].innerText="Ball:"+(u_balls);
 				w_restart();
-				
+				$("#ballsleft")[0].innerText="Ball:"+(u_balls);
 			}
 			else 
 			{
+			  clearInterval(u_gameStart);
+			  clearInterval(u_gameTimer);
 			  $(function(){
 			  setTimeout(function(){
-				  $($("#losePage")[0].children[0]).innerHTML="You Have Passed "+(u_level-1)+" levels";
 				$($('li')[1]).css('display','none');
 				  $($("li")[3]).css("display","block");
 				},1000)
@@ -897,23 +552,26 @@ function w_pauseOrStart(){
 		window.clearInterval(u_gameTimer);
 	}
 	else{
-		u_gameStart = window.setInterval(w_gameStep,10);
+		u_gameStart = window.setInterval(w_gameStep,u_speedTime);
 		u_gameTimer = window.setInterval(w_timeCount,1000);
 	}
 }//控制暂停、开始
 
 function w_start(){	
-	
 	w_chooseModeAndLevel()
 	
 	u_myBang = new Bang(u_width/2, u_height-u_bangH, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
 							
 	u_myBangUp = new Bang(u_width/2, 0, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
 	
-	u_myBall= new Ball(u_width/2+ u_ballToBang, u_height-u_bangH-u_ballR-1, u_ballR, u_ballSpeedX, u_ballSpeedY, u_imageBall, false);
+	if(u_ballUpOrDown == true)
+	u_myBall= new Ball(u_width/2+ u_ballToBang, u_height-u_bangH-u_ballR-1, u_ballR, u_ballSpeedX, -u_ballSpeedY, u_imageBall, false);
+	else
+	u_myBall = new Ball(u_width/2 + u_ballToBang,u_bangH+u_ballR+1,u_ballR, u_ballSpeedX, u_ballSpeedY, u_imageBall, false);
 	
-	u_myBricks= new Bricks(u_width,u_height-200,u_bricksR,u_bricksC,u_bricksP, u_imageBricks,u_map);
+	u_myBricks= new Bricks(u_width,u_height-100,u_bricksR,u_bricksC,u_bricksP, u_imageBricks,u_map);
 	
+	u_myAnimal = new Animal();
 	
 	u_myBricks.initialBricks(u_myAnimal);
 	
@@ -921,7 +579,7 @@ function w_start(){
 		
 	u_myControl.defineControl();
 		         
-	u_gameStart = window.setInterval(w_gameStep,10);
+	u_gameStart = window.setInterval(w_gameStep,u_speedTime);
 
 	u_gameTimer = window.setInterval(w_timeCount,1000);
 }//开始游戏，重新开始游戏
@@ -944,6 +602,9 @@ function w_chooseModeAndLevel(){
 		u_imageBackground = s_imageBackground_0;
 		u_sounds = s_sounds_1;
 		u_map = s_map_0[u_level-1];
+		if(u_level == 2 || u_level == 4)
+		u_ballUpOrDown = false;
+		u_speedTime = 10-Math.floor(u_level/2);
 	}
 }
 
@@ -953,8 +614,306 @@ function w_chooseModeAndLevel(){
 
 ////////////////////////////////////程序运行起点//////////////////////////////////////////
 
+var u_canvas, u_ctx;  //全局变量以u开头
+var u_width, u_height;
+
+var u_myBang;
+var u_myBall;
+var u_myControl;
+var u_myBangUp;
+var u_myAnimal;
+var u_speedTime = 10;
+var u_imageBricks = new Array();
+var u_imageBang = new Image();  
+var u_imageBall = new Image();  
+var u_imageBricks = new Array();
 
 
+var u_gameStart = 0;  //游戏时间种子
+var u_gameTimer;//计时时间种子
+var u_timeCounter = 0;
+var u_min = u_sec = 0; 
+
+var u_pause = false;// 
+
+var u_ballR = 10;
+var u_bangW = 150;
+var u_bangH = 20;
+var u_ballToBang = w_produceRandom(0,u_bangW);
+var u_bricksR = 10;
+var u_bricksC = 11;
+var u_bricksP = 1;
+var u_bangSpeedX = 5;
+var u_ballSpeedX = 0.5;
+var u_ballSpeedY = -5;
+var u_winOrLose = false;
+var u_map;
+var u_sounds;
+var u_soundOn = true;
+var u_ballUpOrDown = true;//true表示球在下面，false表示球在上面
+
+var s_imageBang_1 = new Image();
+var s_imageBall_1 = new Image();
+var s_imageBang_0 = new Image();
+var s_imageBall_0 = new Image();
+
+s_imageBang_1.src = 'image/padd.png';
+s_imageBall_1.src = "image/ball.jpg";
+s_imageBang_0.src = 'image/padd.png';
+s_imageBall_0.src = "image/ball.jpg";
+
+var s_imageBricks_1 = new Array;
+s_imageBricks_1[0] = new Image();
+s_imageBricks_1[0].src = "image/wall.gif";
+s_imageBricks_1[1] = new Image();
+s_imageBricks_1[1].src = "image/steel.gif";
+s_imageBricks_1[2] = new Image();
+s_imageBricks_1[2].src = "image/sea.gif";
+s_imageBricks_1[3] = new Image();
+s_imageBricks_1[3].src = "image/itank.gif";
+s_imageBricks_1[4] = new Image();
+s_imageBricks_1[4].src = "image/podium.gif";
+s_imageBricks_1[5] = new Image();
+s_imageBricks_1[5].src = "image/win.jpg";
+
+var s_imageBackground_1 = new Array();
+for(var i = 0; i < 30; i++)
+{
+var j = i+1;
+s_imageBackground_1[i] = new Image();
+s_imageBackground_1[i].src = "image/background/background_"+j+".JPG";
+}
+
+var s_imageBackground_0 = new Array();
+for(var i = 0; i < 30; i++)
+{
+var j = i+1;
+s_imageBackground_0[i] = new Image();
+s_imageBackground_0[i].src = "image/background/background_"+j+".JPG";
+}
+
+var s_imageBricks_0 = new Array;
+s_imageBricks_0[0] = new Image();
+s_imageBricks_0[0].src = "image/wall.gif";
+s_imageBricks_0[1] = new Image();
+s_imageBricks_0[1].src = "image/steel.gif";
+s_imageBricks_0[2] = new Image();
+s_imageBricks_0[2].src = "image/sea.gif";
+s_imageBricks_0[3] = new Image();
+s_imageBricks_0[3].src = "image/itank.gif";
+s_imageBricks_0[4] = new Image();
+s_imageBricks_0[4].src = "image/podium.gif";
+s_imageBricks_0[5] = new Image();
+s_imageBricks_0[5].src = "image/win.jpg";
+
+
+var s_sounds_1= new Array();
+s_sounds_1[0] = new Audio('audio/clush.mp3');
+s_sounds_1[0].volume = 0.6;
+s_sounds_1[1] = new Audio('audio/colla.mp3');
+s_sounds_1[1].volume = 0.6;
+s_sounds_1[2] = new Audio('audio/win.mp3');
+s_sounds_1[2].volume = 0.6;
+s_sounds_1[3] = new Audio('audio/lose.mp3');
+s_sounds_1[3].volume = 0.6;
+
+
+var s_sounds_0= new Array();
+
+s_sounds_0[0] = new Audio('audio/clush.mp3');
+s_sounds_0[0].volume = 0.6;
+s_sounds_0[1] = new Audio('audio/colla.mp3');
+s_sounds_0[1].volume = 0.6;
+s_sounds_0[2] = new Audio('audio/win.mp3');
+s_sounds_0[2].volume = 0.6;
+s_sounds_0[3] = new Audio('audio/lose.mp3');
+s_sounds_0[3].volume = 0.6;
+
+var s_map_0 = new Array();
+
+/*s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,5],
+				[1,1,1,2,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,2,1,1,1,1,1,1],
+				[1,1,1,1,1,1,2,1,1,1],
+				[1,1,1,2,1,1,1,1,1,1],
+				[1,1,1,1,1,1,1,1,1,1],
+				[1,1,1,1,7,7,1,1,1,1],
+				[4,1,1,7,7,7,7,1,1,1],
+				[1,1,7,7,7,7,7,7,1,1]];*/
+				
+s_map_0[0]   =  [[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,1,7,7,7,7,7,7],
+				[7,7,7,7,5,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,7,3,7,4,7,7,7,7],
+				[1,7,1,7,1,7,1,7,1,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_0[2] =	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,7,1,1,1,1,7,7,7,7],
+				[2,2,2,2,2,2,2,2,2,2,7],
+				[7,7,7,1,1,1,1,7,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_0[3]  =	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,7,7,1,7,7,2,7,7],
+				[2,1,1,1,2,1,2,1,1,1,2],
+				[7,7,2,7,7,1,7,7,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_0[1]  =	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,2,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,7,2,1,1,1,1,1,2,7,7],
+				[2,2,2,2,2,2,2,2,2,2,2],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_0[4] =	[[7,7,7,7,7,7,7,7,7,7,7],
+				 [7,7,7,7,7,7,7,7,7,7,7],
+				[7,1,7,7,7,7,7,7,1,7,7],
+				[2,2,2,7,2,2,2,7,2,2,2],
+				[7,7,7,1,1,1,1,1,7,7,7],
+				[7,7,7,7,1,1,1,7,7,7,7],
+				[7,7,7,7,7,1,7,7,7,7,7],
+				[7,7,7,7,1,1,1,7,7,7,7],
+				[7,7,7,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7]];
+
+s_map_0[5]  =	[[7,7,7,7,7,7,7,7,7,7,7],
+				 [7,7,7,7,7,7,7,7,7,7,7],
+				[7,1,7,7,7,7,7,7,1,7,7],
+				[2,2,2,7,2,2,2,7,2,2,2],
+				[7,7,7,1,1,1,1,1,7,7,7],
+				[7,7,7,2,1,1,1,2,7,7,7],
+				[7,7,7,7,7,1,7,7,7,7,7],
+				[7,7,7,7,1,1,1,7,7,7,7],
+				[7,7,7,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7]];
+				
+s_map_0[6]  =	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,7,7,7,7,2,7,7,7],
+				[7,7,2,1,1,1,1,2,7,7,7],
+				[7,7,2,1,1,1,1,2,7,7,7],
+				[7,7,2,2,2,2,2,2,7,7,7],
+				[7,7,2,1,1,1,1,2,7,7,7],
+				[7,7,2,1,1,1,1,2,7,7,7],
+				[7,7,2,7,7,7,7,2,7,7,7]];
+
+s_map_0[7]  =	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,2,1,1,1,1,1,1,1,2,7],
+				[7,7,2,1,1,1,1,1,2,7,7],
+				[7,7,7,2,1,1,1,2,7,7,7],
+				[7,7,7,7,2,1,2,7,7,7,7]];
+
+s_map_0[8]  =	[
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,2,1,1,1,7,1,1,1,2,7],
+				[7,2,7,7,7,1,7,7,7,2,7],
+				[7,2,7,7,7,1,7,7,7,2,7],
+				[7,2,7,7,1,7,1,7,7,2,7],
+				[7,2,2,2,7,7,7,2,2,2,7],
+				[7,2,7,7,1,7,1,7,7,2,7],
+				[7,2,7,7,7,1,7,7,7,2,7],
+				[7,2,7,7,7,1,7,7,7,2,7],
+				[7,2,1,1,1,7,1,1,1,2,7]];
+
+
+s_map_0[9]  =	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,2,2,2,2,2,7,7,7,1,7],
+				[7,7,7,7,7,2,7,7,7,1,7],
+				[7,7,7,7,7,2,7,7,7,1,7],
+				[7,1,1,1,1,2,1,1,1,1,7],
+				[7,1,7,7,7,2,7,7,7,7,7],
+				[7,1,7,7,7,2,7,7,7,7,7],
+				[7,1,7,7,7,2,2,2,2,2,7]];
+				
+var s_map_1= new Array();
+
+s_map_1[0] =   [[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,5,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,3,3,1,7,7,7],
+				[7,7,4,1,1,1,1,2,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+
+s_map_1[1] =    [[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,1,7,7],
+				[7,1,1,1,3,7,1,1,1,7,7],
+				[7,2,1,2,7,2,7,1,2,7,7],
+				[7,1,7,1,7,1,7,1,7,1,7]];
+				
+s_map_1[2] =   [[7,7,7,7,7,7,7,7,7,7,7],
+				[7,2,1,2,1,2,1,2,2,7,7],
+				[7,2,7,7,7,7,7,7,2,7,7],
+				[7,2,2,1,1,1,1,1,2,7,7],
+				[7,2,1,1,1,1,1,1,2,7,7],
+				[7,2,1,1,1,3,3,1,2,7,7],
+				[7,2,1,1,1,1,1,2,2,7,7],
+				[7,2,2,2,3,3,2,2,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_1[3] =   [[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,3,3,1,7,7,7],
+				[7,7,1,1,1,1,1,2,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+
+s_map_1[4] = 	[[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,1,1,1,7,7,7],
+				[7,7,1,1,1,3,3,1,7,7,7],
+				[7,7,1,1,1,1,1,2,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7,7]];
+
+	
+
+//////////////////界面交互函数////////////////////////////
 //////////////////界面交互函数////////////////////////////
 var u_mode=0;
 var u_level=1;
@@ -1041,4 +1000,3 @@ $(".littleicon").click(function(){
     $($(".littleicon")[1].children[0]).attr("src","image/6.png");
   }
 })
-
