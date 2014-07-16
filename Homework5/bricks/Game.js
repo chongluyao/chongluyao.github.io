@@ -966,7 +966,7 @@ $("#classicmode").click(function () {
   u_mode = 0;
   $($("li")[0]).css("display","none");
   $($("li")[1]).css("display","block");
-  $("#levelname")[0].innerText="Level"+(u_level+1);
+  $("#levelname")[0].innerText="Level"+(u_level);
   $("#ballsleft")[0].innerText="Ball:"+(u_balls);
     u_canvas=document.getElementById('ctx');
     u_ctx=u_canvas.getContext('2d');
