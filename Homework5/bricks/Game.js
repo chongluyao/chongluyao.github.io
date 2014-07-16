@@ -42,9 +42,9 @@ var s_imageBang_0 = new Image();
 var s_imageBall_0 = new Image();
 
 s_imageBang_1.src = 'image/padd.png';
-s_imageBall_1.src = "image/ball.jpg";
+s_imageBall_1.src = "image/ball.JPG";
 s_imageBang_0.src = 'image/padd.png';
-s_imageBall_0.src = "image/ball.jpg";
+s_imageBall_0.src = "image/ball.JPG";
 
 var s_imageBricks_1 = new Array;
 s_imageBricks_1[0] = new Image();
@@ -58,14 +58,14 @@ s_imageBricks_1[3].src = "image/itank.gif";
 s_imageBricks_1[4] = new Image();
 s_imageBricks_1[4].src = "image/podium.gif";
 s_imageBricks_1[5] = new Image();
-s_imageBricks_1[5].src = "image/win.jpg";
+s_imageBricks_1[5].src = "image/win.JPG";
 
 var s_imageBackground_1 = new Array();
 for(var i = 0; i < 30; i++)
 {
 var j = i+1;
 s_imageBackground_1[i] = new Image();
-s_imageBackground_1[i].src = "image/background/background_"+j+".jpg";
+s_imageBackground_1[i].src = "image/background/background_"+j+".JPG";
 }
 
 var s_imageBackground_0 = new Array();
@@ -73,7 +73,7 @@ for(var i = 0; i < 30; i++)
 {
 var j = i+1;
 s_imageBackground_0[i] = new Image();
-s_imageBackground_0[i].src = "image/background/background_"+j+".jpg";
+s_imageBackground_0[i].src = "image/background/background_"+j+".JPG";
 }
 
 var s_imageBricks_0 = new Array;
@@ -88,7 +88,7 @@ s_imageBricks_0[3].src = "image/itank.gif";
 s_imageBricks_0[4] = new Image();
 s_imageBricks_0[4].src = "image/podium.gif";
 s_imageBricks_0[5] = new Image();
-s_imageBricks_0[5].src = "image/win.jpg";
+s_imageBricks_0[5].src = "image/win.JPG";
 
 
 var s_sounds_1= new Array();
