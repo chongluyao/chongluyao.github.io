@@ -1,4 +1,4 @@
-// JavaScript Document
+﻿// JavaScript Document
 //////////////////////////定义对象//////////////////////////////////////
 
 //小球对象
@@ -22,11 +22,6 @@ function Ball(x, y, r, dx, dy, image, auto) {      //球，这里把小球当做
 		var that = this;
 		
 		ctx.drawImage(that.image, that.x-that.r, that.y-that.r, that.r*2, that.r*2);
-		/*ctx.fillStyle = '#f66';
-    	ctx.beginPath();
-    	ctx.arc(that.x, that.y, that.r, 0, Math.PI * 2, true);
-    	ctx.closePath();
-    	ctx.fill();*/
 		if(u_winOrLose == true)
 			w_gameOver();
 	};
@@ -490,37 +485,38 @@ function w_gameOver(){
 	clearInterval(u_gameTimer);
 	if(u_winOrLose == true)
 	{
+		u_winOrLose = false;
 		u_sounds[2].play();
-		clearInterval(u_gameStart);
-		clearInterval(u_gameTimer);
-		$(function(){
-		setTimeout(function(){
-		  $($('li')[1]).css('display','none');
-			$($("li")[2]).css("display","block");
-		  },1000)
-		});
+			clearInterval(u_gameStart);
+			clearInterval(u_gameTimer);
+			$(function(){
+			setTimeout(function(){
+			  $($('li')[1]).css('display','none');
+				$($("li")[2]).css("display","block");
+			  },1000)
+			});
 	}
 	else
 	{
 		u_sounds[3].play();
-		u_balls --;
-		if (u_balls >= 0)
-		{
-			w_restart();
-			
-		}
-		else 
-		{
-		  clearInterval(u_gameStart);
-		  clearInterval(u_gameTimer);
-		  $(function(){
-		  setTimeout(function(){
-			$($('li')[1]).css('display','none');
-			  $($("li")[3]).css("display","block");
-			},1000)
-		  });
-		  u_balls = 2;
-		}
+			u_balls --;
+			if (u_balls >= 0)
+			{
+				w_restart();
+				$("#ballsleft")[0].innerText="Ball:"+(u_balls);
+			}
+			else 
+			{
+			  clearInterval(u_gameStart);
+			  clearInterval(u_gameTimer);
+			  $(function(){
+			  setTimeout(function(){
+				$($('li')[1]).css('display','none');
+				  $($("li")[3]).css("display","block");
+				},1000)
+			  });
+			  u_balls = 2;
+			}
 	}
 }
 
@@ -561,7 +557,9 @@ function w_pauseOrStart(){
 }//控制暂停、开始
 
 function w_start(){	
-	w_chooseModeAndLevel();
+	
+	w_chooseModeAndLevel()
+	
 	u_myBang = new Bang(u_width/2, u_height-u_bangH, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
 							
 	u_myBangUp = new Bang(u_width/2, 0, u_bangW, u_bangH, u_bangSpeedX, 0, u_imageBang,false); 
@@ -583,25 +581,24 @@ function w_start(){
 }//开始游戏，重新开始游戏
 
 function w_chooseModeAndLevel(){
-	/*
-	if(u_mode.mode == 1)
-	{*/
+	if(u_mode == 1)
+	{
 		u_imageBang = s_imageBang_1;
 		u_imageBall = s_imageBall_1;
 		u_imageBricks = s_imageBricks_1;
 		u_imageBackground = s_imageBackground_1;
 		u_sounds = s_sounds_1;
-		//u_map = s_map_1[u_mode.level];
-		u_map = s_map_1[0];
-	/*}
+		u_map = s_map_1[u_level-1];
+	}
 	else
 	{
 		u_imageBang = s_imageBang_0;
 		u_imageBall = s_imageBall_0;
 		u_imageBricks = s_imageBricks_0;
 		u_imageBackground = s_imageBackground_0;
-		u_map = s_map_0[u_mode.level];
-	}*/
+		u_sounds = s_sounds_1;
+		u_map = s_map_0[u_level-1];
+	}
 }
 
 
@@ -609,11 +606,10 @@ function w_chooseModeAndLevel(){
 
 
 ////////////////////////////////////程序运行起点//////////////////////////////////////////
-//全局变量以u开头
-var u_canvas = document.getElementById('ctx');
-var u_ctx = u_canvas.getContext('2d');
-var u_width = u_canvas.width;
-var u_height = u_canvas.height;
+
+var u_canvas, u_ctx;  //全局变量以u开头
+var u_width, u_height;
+
 var u_myBang;
 var u_myBall;
 var u_myControl;
@@ -645,11 +641,18 @@ var u_ballSpeedX = 0.5;
 var u_ballSpeedY = -5;
 var u_winOrLose = false;
 var u_map;
+var u_sounds;
+var u_soundOn = true;
 
 var s_imageBang_1 = new Image();
 var s_imageBall_1 = new Image();
+var s_imageBang_0 = new Image();
+var s_imageBall_0 = new Image();
+
 s_imageBang_1.src = 'image/padd.png';
 s_imageBall_1.src = "image/ball.jpg";
+s_imageBang_0.src = 'image/padd.png';
+s_imageBall_0.src = "image/ball.jpg";
 
 var s_imageBricks_1 = new Array;
 s_imageBricks_1[0] = new Image();
@@ -666,15 +669,37 @@ s_imageBricks_1[5] = new Image();
 s_imageBricks_1[5].src = "image/win.jpg";
 
 var s_imageBackground_1 = new Array();
-for(var i = 0; i < 3; i++)
+for(var i = 0; i < 30; i++)
 {
 var j = i+1;
 s_imageBackground_1[i] = new Image();
-s_imageBackground_1[i].src = "image/background/background1_"+j+".jpg";
+s_imageBackground_1[i].src = "image/background/background_"+j+".jpg";
 }
 
-var s_sounds_1= new Array();
+var s_imageBackground_0 = new Array();
+for(var i = 0; i < 30; i++)
+{
+var j = i+1;
+s_imageBackground_0[i] = new Image();
+s_imageBackground_0[i].src = "image/background/background_"+j+".jpg";
+}
 
+var s_imageBricks_0 = new Array;
+s_imageBricks_0[0] = new Image();
+s_imageBricks_0[0].src = "image/wall.gif";
+s_imageBricks_0[1] = new Image();
+s_imageBricks_0[1].src = "image/steel.gif";
+s_imageBricks_0[2] = new Image();
+s_imageBricks_0[2].src = "image/sea.gif";
+s_imageBricks_0[3] = new Image();
+s_imageBricks_0[3].src = "image/itank.gif";
+s_imageBricks_0[4] = new Image();
+s_imageBricks_0[4].src = "image/podium.gif";
+s_imageBricks_0[5] = new Image();
+s_imageBricks_0[5].src = "image/win.jpg";
+
+
+var s_sounds_1= new Array();
 s_sounds_1[0] = new Audio('audio/clush.mp3');
 s_sounds_1[0].volume = 0.6;
 s_sounds_1[1] = new Audio('audio/colla.mp3');
@@ -684,9 +709,21 @@ s_sounds_1[2].volume = 0.6;
 s_sounds_1[3] = new Audio('audio/lose.mp3');
 s_sounds_1[3].volume = 0.6;
 
-var s_map_1 = new Array();
 
-s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,1],
+var s_sounds_0= new Array();
+
+s_sounds_0[0] = new Audio('audio/clush_0.mp3');
+s_sounds_0[0].volume = 0.6;
+s_sounds_0[1] = new Audio('audio/colla_0.mp3');
+s_sounds_0[1].volume = 0.6;
+s_sounds_0[2] = new Audio('audio/win.mp3');
+s_sounds_0[2].volume = 0.6;
+s_sounds_0[3] = new Audio('audio/lose.mp3');
+s_sounds_0[3].volume = 0.6;
+
+var s_map_0 = new Array();
+
+/*s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,5],
 				[1,1,1,2,1,1,1,1,1,1],
 				[1,1,1,1,1,1,1,1,1,1],
 				[1,1,1,2,1,1,1,1,1,1],
@@ -695,34 +732,34 @@ s_map_1[10] =   [[1,1,1,1,1,1,1,1,1,1],
 				[1,1,1,1,1,1,1,1,1,1],
 				[1,1,1,1,7,7,1,1,1,1],
 				[4,1,1,7,7,7,7,1,1,1],
-				[1,1,7,7,7,7,7,7,1,1]];
+				[1,1,7,7,7,7,7,7,1,1]];*/
 				
-s_map_1[0]   =  [[7,7,7,7,7,7,7,7,7,7],
+s_map_0[0]   =  [[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,3,1,1,1,1,1,7,7],
 				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,1,1,1,2,1,1,7,7],
-				[7,7,4,1,1,1,1,5,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7]];
 				
-s_map_1[1] =	[[7,7,7,7,7,7,7,7,7,7],
+s_map_0[1] =	[[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,1,1,1,1,2,5,7,7],
+				[7,7,1,1,1,1,2,1,7,7],
 				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,1,2,1,3,1,1,7,7],
-				[7,7,4,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7]];
 				
-s_map_1[2]  =	[[7,7,7,7,7,7,7,7,7,7],
+s_map_0[2]  =	[[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,1,1,1,1,1,5,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,1,1,1,3,2,1,7,7],
 				[7,7,4,1,1,1,1,2,7,7],
@@ -730,10 +767,10 @@ s_map_1[2]  =	[[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7]];
 				
-s_map_1[3]  =	[[7,7,7,7,7,7,7,7,7,7],
+s_map_0[3]  =	[[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,5,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
 				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,1,1,1,3,3,1,7,7],
 				[7,7,4,1,1,1,1,2,7,7],
@@ -741,7 +778,75 @@ s_map_1[3]  =	[[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7]];
 				
-s_map_1[4] =	[[7,7,7,7,7,7,7,7,7,7],
+s_map_0[4] =	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_0[5]  =	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_0[6]  =	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_0[7]  =	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_0[8]  =	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_0[9]  =	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+				
+var s_map_1= new Array();
+
+s_map_1[0] =   [[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,2,1,1,1,1,5,7,7],
@@ -752,32 +857,121 @@ s_map_1[4] =	[[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7]];
 
-s_map_1[5]  =	[[7,7,7,7,7,7,7,7,7,7],
+s_map_1[1] =    [[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,1,1,1,1,1,1,1,7],
+				[7,7,1,1,1,1,1,1,1,7],
+				[7,7,1,1,1,1,1,1,1,7],
+				[7,7,1,1,1,1,1,1,1,7],
+				[7,7,1,1,1,1,1,1,1,7],
+				[7,1,1,1,3,7,1,1,1,7],
+				[7,2,1,2,7,2,7,1,2,7],
+				[7,1,7,1,7,1,7,1,7,1]];
+				
+s_map_1[2] =   [[7,7,7,7,7,7,7,7,7,7],
+				[7,2,1,2,1,2,1,2,2,7],
+				[7,2,7,7,7,7,7,7,2,7],
+				[7,2,2,1,1,1,1,1,2,7],
+				[7,2,1,1,1,1,1,1,2,7],
+				[7,2,1,1,1,3,3,1,2,7],
+				[7,2,1,1,1,1,1,2,2,7],
+				[7,2,2,2,3,3,2,2,2,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_1[3] =   [[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
-				[7,7,2,1,1,1,1,5,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
 				[7,7,1,1,1,1,1,1,7,7],
 				[7,7,1,1,1,3,3,1,7,7],
-				[7,7,4,1,1,1,1,2,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_1[4] = 	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_1[5] = 	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7],
 				[7,7,7,7,7,7,7,7,7,7]];
 				
-var s_map_2 = new Array();
+s_map_1[6] = 	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+				
+s_map_1[7] = 	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];
+
+s_map_1[8] = 	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];	
+
+s_map_1[9] = 	[[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,2,1,1,1,1,1,7,7],
+				[7,7,1,1,1,1,1,1,7,7],
+				[7,7,1,1,1,3,3,1,7,7],
+				[7,7,1,1,1,1,1,2,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7],
+				[7,7,7,7,7,7,7,7,7,7]];	
+
 //////////////////界面交互函数////////////////////////////
 var u_mode=0;
 var u_level=1;
 var u_balls=2;
-var u_soundOn=false;
+
 $("#classicmode").click(function () {
   u_mode = 0;
   $($("li")[0]).css("display","none");
   $($("li")[1]).css("display","block");
-  $("#levelname")[0].innerText="Level"+(u_level);
+  $("#levelname")[0].innerText="Level"+(u_level+1);
   $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-  $(document).ready(function(){
+    u_canvas=document.getElementById('ctx');
+    u_ctx=u_canvas.getContext('2d');
+    u_width = u_canvas.width;
+    u_height = u_canvas.height;
     w_start();
-  });
 });
 $("#crazymode").click(function () {
   u_mode = 1;
@@ -785,27 +979,29 @@ $("#crazymode").click(function () {
   $($("li")[1]).css("display","block");
   $("#levelname")[0].innerText="Level"+(u_level);
   $("#ballsleft")[0].innerText="Ball:"+(u_balls);
-  $(document).ready(function(){
+    u_canvas=document.getElementById('ctx');
+    u_ctx=u_canvas.getContext('2d');
+    u_width = u_canvas.width;
+    u_height = u_canvas.height;
     w_start();
-  });
 });
 $("#helpbutton").click(function(){
   $($("li")[0]).css("display","none");
   $($("li")[4]).css("display","block");
 });
 $(".mainmenu").click(function(){
-  u_level=1;
-  u_balls=2;
   $($("li")[2]).css("display","none");
   $($("li")[3]).css("display","none");
   $($("li")[0]).css("display","block");
+  u_level=1;
+  u_balls=2;
 });
 $("#nextlevel").click(function(){
-	u_level ++;
     $($("li")[2]).css("display","none");
     $($("li")[1]).css("display", "block");
     $("#levelname")[0].innerText = "Level" + (u_level);
     $("#ballsleft")[0].innerText = "Ball:" + (u_balls);
+	u_level++;
     w_start();
 });
 $("#retry").click(function(){
