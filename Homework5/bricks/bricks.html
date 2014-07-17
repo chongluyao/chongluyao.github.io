@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="bricks.css">
 </head>
 <body>
+	<div id = "mask">
+    <div id = "loadContainer">资源加载中。。。<div id = "loadBarContainer"><span id ="loadBar"></span></div></div></div>
 	<div id="container" align="center">
 		<div id="header">
 		</div>
@@ -37,6 +39,9 @@
 			</li>
 			<li style="display:none">
 			<div id="winPage" class="page">
+            	<div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
 				<p>Level Complete!</p>
 				<button id="nextlevel">Next Level</button>
 				<button class="mainmenu">Main Menu</button>
@@ -47,7 +52,7 @@
 				<div class="littleicon">
 					<img src="image/6.png" style="width:50px height:50px">
 				</div>
-				<p style="margin-top:150px">You Have Passed 0 levels!</p>
+				<p style="font-size:72px">You Have Passed 0 levels!</p>
 				<button id="retry">Retry</button>
 				<button class="mainmenu">Main Menu</button>
 			</div>
@@ -84,11 +89,44 @@
 			</li>
             <li style="display:none">
             	<div id="completePage" class="page">
-				<p>You Have Passed All Levels!</p>
+                <div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
+				<p style="font-size:72px">You Have Passed All Levels!</p>
 				<button id="showoff">Show Off</button>
 				<button class="mainmenu">Main Menu</button>
 			</div>
             </li> 
+            <li style="display:none">
+			<div id="levelSelect0" class="page">
+            	<div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
+				<p style="font-size:72px;margin-bottom:30px">Level Select</p>
+				<button class="level0">Level1</button>
+				<button class="level0">Level2</button>
+                <button class="level0">Level3</button>
+                <button class="level0">Level4</button>
+                <button class="level0">Level5</button>
+                <button class="level0">Level6</button>
+                <button class="level0">Level7</button>
+                <button class="level0">Level8</button>
+                <button class="level0">Level9</button>
+			</div>
+			</li>
+            <li style="display:none">
+			<div id="levelSelect1" class="page">
+            	<div class="littleicon">
+					<img src="image/6.png" style="width:50px height:50px">
+				</div>
+				<p style="font-size:72px">Level Select</p>
+				<button class="level1">Level1</button>
+				<button class="level1">Level2</button>
+                <button class="level1">Level3</button>
+                <button class="level1">Level4</button>
+                <button class="level1">Level5</button>
+			</div>
+			</li>
 		</ul>
 		</div>
 	</div>
@@ -96,6 +134,6 @@
   		<source src="music/1.mp3" type="audio/mp3" />
   		<source src="music/1.ogg" type="audio/ogg" />
 	</audio>
-	<script "text/javascript" src="Game (1).js"></script>
+	<script "text/javascript" src="Game.js"></script>
 </body>
 </html>

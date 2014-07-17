@@ -9,6 +9,14 @@ img
 {
 	width:100%;
 }
+p
+{
+	margin-top:150px;
+	margin-bottom:0px;
+	font-size:103px;
+	font-family:"Buxton Sketch";
+	color:#783d10;
+}
 ul
 {
 	list-style:none;
@@ -91,35 +99,16 @@ ul
 }
 .rule p
 {
+	font-size:16px;
 	margin:4px;
 	margin-left:18px;
-}
-p.element
-{
-	margin:0px;
-	margin-left:32px;
+	font-family:"华文细黑"；
 }
 canvas
 {
 	background:white;
 	margin-top:0px;
 	border:1px solid #c3c3c3;
-}
-#winPage p
-{
-	margin-top:50px;
-	margin-bottom:0px;
-	font-size:103px;
-	font-family:"Buxton Sketch";
-	color:#783d10;
-}
-#losePage p
-{
-	margin-top:50px;
-	margin-bottom:0px;
-	font-size:72px;
-	font-family:"Buxton Sketch";
-	color:#783d10;
 }
 button
 {
@@ -145,12 +134,15 @@ button
 	background: #783d10;
 	color:white;
 }
-#footer
+.level0
 {
-	width:1000px;
-	background: beige;
-	opacity: 1;
-	height:20px;
-	font-size:12px;
-	font-family: "微软雅黑";
+	margin-left:30px;
+	margin-right:30px;
+	margin-top:10px;
+	margin-bottom:30px;
+}
+.level1
+{
+	margin-left:30px;
+	margin-right:30px;
 }
