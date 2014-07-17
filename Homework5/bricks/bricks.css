@@ -4,6 +4,7 @@ body
 	padding:0px;
 	background-image: url(image/6.jpg);
 	background-attachment: fixed;
+	background-repeat:none;
 }
 img
 {
