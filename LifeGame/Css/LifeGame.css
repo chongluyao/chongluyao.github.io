@@ -1,0 +1,42 @@
+body
+{
+	background-color: beige;
+}
+#header
+{
+	font-size: 50px;
+	font-family: "微软雅黑";
+	margin:20px;
+}
+#stage
+{
+	width:800px;
+}
+#grid
+{
+	width:500px;
+	height:500px;
+	float: left;
+}
+#instruction
+{
+	width:200px;
+	height:500px;
+	float: right;
+	background-color: rgba(128,128,128,0.8);
+}
+ul
+{
+	font-family: "微软雅黑";
+	color: beige;
+	text-align: left;
+	font-size: 18px;
+}
+.live
+{
+	background-color:#80FF80;
+}
+.dead
+{
+	background-color:#808080;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Life Game By Y-C</title>
+  <link rel="stylesheet" type="text/css" href="Css/LifeGame.css">
+  <script src="Js/jquery2.0.0.min.js"></script>
+</head>
+<body>
+	<div id="container" align="center">
+		<div id="header">
+			Life Game
+		</div>
+		<div id="stage">
+			<table id="grid">
+			</table>
+			<div id="instruction">
+			<ul>
+				<li>空格：开始/暂停</li>
+				<li>→：加速</li>
+				<li>←：减速</li>
+				<li>R：重置</li>
+			</ul>
+			</div>
+	</div>
+	<script src="Js/Interface.js"></script>
+	<script src="Js/Logic.js"></script>
+	<script src="Js/Operation.js"></script>
+	<script>
+		drawGrid(n);
+		initGrid(n);
+		updateGrid(n);
+	</script>
+</body>
+</html>
