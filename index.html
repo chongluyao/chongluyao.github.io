@@ -1,123 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-	<title> My Page </title>
-	<style>
-		body
-		{
-			margin: 0px;
-			padding: 0px;
-			border: 0px;
-			background-image: url(img/5.jpg);
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-		}
-		div #container
-		{
-			margin: 0px;
-			padding: 0px;
-			width: 800px;
-			height: 1200px;
-			background: white;
-			opacity: 0.4;
-		}
-		div #header
-		{
-			background-color:#999;
-			margin: 0px;
-			padding: 0px;
-			width: 800px;
-			height: 140px;
-		}
-		div #head
-		{
-			clear:both;
-			color: white;
-			margin-left: 0px;
-			padding-top: 0px;
-			border: 0px;
-			font-family:"微软雅黑";
-			font-size:26px;
-			text-align:left;
-		}
-		div #contents
-		{
-			height: auto;
-			margin: 0px;
-			width: 800px;
-		}
-		div #nav
-		{
-			float: left;
-			margin: 10px; 
-			height: 30px;
-			width: 180px;
-			background: black;
-			font-family: Verdana, Geneva, sans-serif;
-			opacity: 0.4;
-		}
-		
-		div #body
-		{
-			clear: both;
-			height: 500px;
-			color: black;
-			margin-left: 0px;
-			margin-right: 0px;
-			width: 800px;
-			text-align: left;
-			font-size: 22px;
-			background:rgba(255,255,255,0.2);
-		}
-		div #foot
-		{
-			color: black;
-			font-family:"微软雅黑";
-			font-size:10px;
-			width: 800px;
-			background: white;
-			opacity: 0.4;
-		}
-		#nav a 
-		{
-			font-size: 19px;
-			font-family: "微软雅黑";
-			font-style: italic;
-			font-style: normal;
-			text-decoration:none;
-			vertical-align: middle;
-		}
-    </style>
-</head>
-<body alink="#FFFFFF" vlink="#FFFFFF" link="#FFFFFF">
-	<div id="container" align="center">
-		<div id= "header">
-    		<div id= "head">
-        		<img src="img/7.jpg" height="140" width="800">
-        	</div>
-    	</div>
-		<div id= "contents" align="center">
-        	<div id="nav"align="center">
-            	<a href="index2.html">课程展示</a>
-        	</div>
-        	<div id="nav"align="center">
-            	<a href="index3.html">日志随笔</a>
-        	</div>
-            <div id="nav" align="center">
-        		<a href="index1.html">个人信息</a>
-        	</div>
-         	<div id="nav"align="center">
-            	<a href="index.html">回到主页</a>
-        	</div>
-        </div>
-		<div id="body">
-      	</div>
-        <div id="foot" align="center">
-    		<p>Copyright 2014 by Charlotte All Rights Reserved.</p>
-	</div>	
-</body>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Popush项目技术博客 by cocolotte</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Popush项目技术博客</h1>
+        <p>软件工程(3)    “少爷吉祥”——小组</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/cocolotte" class="button fork"><strong>View On GitHub</strong></a>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
+
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
 </html>
-
-
-
