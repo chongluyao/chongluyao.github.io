@@ -1,74 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Popush项目技术博客 by cocolotte</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Popush项目技术博客 by cocolotte</title>
   </head>
+
   <body>
 
-      <header>
+    <header>
+      <div class="container">
         <h1>Popush项目技术博客</h1>
-        <p>软件工程(3)    “少爷吉祥”——小组</p>
-      </header>
+        <h2>By 种璐瑶    From “少爷吉祥”——小组</h2>
 
-      <div id="banner">
-        <span id="logo"></span>
+        <section id="downloads">
+          <a href="https://github.com/cocolotte" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
-        <a href="https://github.com/cocolotte" class="button fork"><strong>View On GitHub</strong></a>
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
+    <div class="container">
+      <section id="main_content">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="%E5%9C%A8windows%E4%B8%8B%E9%83%A8%E7%BD%B2popush%E9%A1%B9%E7%9B%AE" class="anchor" href="#%E5%9C%A8windows%E4%B8%8B%E9%83%A8%E7%BD%B2popush%E9%A1%B9%E7%9B%AE"><span class="octicon octicon-link"></span></a>在Windows下部署Popush项目</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>　　在这次小组项目中，我承担了在Windows下部署Popush项目的任务。虽然在Windows下部署比在Linux下要麻烦一些，但是在少爷的光环笼罩下，我还是成功地完成了部署。部署的Popush项目的过程中，基本按照大帝的文档操作，但是中途也遇到了一些问题。</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<p>现将部署过程总结如下：</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<blockquote>
+<p>准备材料</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<blockquote>
+<p>nginx、mongodb、nodejs的安装包,用来构建服务器、数据库等环境支持</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Mingw32-gcc，Perl，Python等安装包，以支持不同语言在Popush上的运行</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>从github上将Popush项目克隆到本地</p>
+</blockquote>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>安装过程</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<blockquote>
+<p>从网上搜索教程，根据教程进行安装</p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>基本按照默认选项安装，安装后需要更改环境变量，环境变量一般为包含对应的可执行程序的目录</p>
+</blockquote>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>启动服务</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<blockquote>
+<p>在Popush文件夹下打开命令行</p>
+
+<p>执行node app.js命令开启服务器</p>
+
+<p>执行mongod --dbpath db命令开启数据库</p>
+
+<p>登录localhost，即可看到Popush页面</p>
+</blockquote>
+
+<p>注册登录</p>
+
+<blockquote>
+<p>在Windows下连接服务器较慢，出现Popush页面后会提示“无法连接到服务器”，但是等一会儿就可以连上</p>
+
+<p>登录账号后可以新建各种语言的文件，且都能在Popush上编译运行</p>
+</blockquote>
+</blockquote>
+
+<p>在部署过程中遇到以下问题：</p>
+
+<blockquote>
+<p>下载MinGW32的下载器后，可以选择gcc等安装，但是除了gcc被选中外还有很多默认被选中的项。且gcc目录下有bin、doc等内容，不知道需要选择哪些。后来在网上搜索后发现可以用命令行来执行安装过程，于是改用命令行安装了MinGW32一系列的语言。</p>
+
+<p>执行npm install命令后提示错误，将错误反馈给助教后，助教帮助google了一下，在../User/AppData/Roaming下新建了npm文件夹，解决了问题。</p>
+
+<p>不知道需要启动MongoDB。服务器连接上后，注册时会提醒“内部错误”，是由于数据库服务没有开启。在则明大神的帮助下启动了MongoDB。</p>
+
+<p>C和C++不能调试。经过在网上的多番搜索，以及多次尝试，发现将..\Mingw\bin的路径放在环境变量的最前而非最后，可以解决这一问题。猜测是因为本机默认的调试工具并非gdb导致的。</p>
+</blockquote>
+
+<p>　　这次任务中小组一起工作的时间并不长，主要是分工后各司其职。但是在我遇到困难的时候，则明大神的帮助对我来说还是起到了至关重要的作用。因为一旦卡在某一步之后，后续步骤就无法进行，只能白白耽误时间。而则明大神的及时帮助就使得我不会总卡在某处，可以顺利地一直按照文档执行下去，因此整个配置过程中并没有花费太长时间。靠谱的队友张佳瑜则早早地在linux下完成了部署，起到了很好地表率作用。</p>
+
+<p>　　开始的时候我看着大帝长长的文档愁眉苦脸，而后来一步步执行后才发现其实配置popush并没有那么困难。这次作业中接触到了过去不能理解的命令行和曾经以为很高端的环境变量，用了之后才知道都是怎么一回事情。网络上有很多的教程可供参考，遇到问题还可以交流讨论，这些让我对大三的苦逼生活有了一些信心，配置成功后也挺有成就感的。但是很多问题还是只知道解决方法，并不明白其中的原理，这也使我认识到了差距，任重而道远啊T_T......</p>
+
+<p>　　嗯，总体来说这次作业的完成还是非常顺利且愉快的，期待大作业时候真正的合作开发~</p>
       </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
